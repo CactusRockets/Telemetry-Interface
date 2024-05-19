@@ -9,8 +9,8 @@ const SideContainer = () => {
             <img src={ cactusIcon } alt="" />
             <section>
                 <div className={ styles['skibs-container'] }>
-                    <SkibBox text='SKIB1' activated />
-                    <SkibBox text='SKIB2' />
+                    <SkibBox text='SKIB 1' activated />
+                    <SkibBox text='SKIB 2' />
                 </div>
                 <BorderContainer.Root title='Foguete'>
                     <BorderContainer.Itens field='Motor' value={'Tipo J'} className={ styles['container-item'] } />
