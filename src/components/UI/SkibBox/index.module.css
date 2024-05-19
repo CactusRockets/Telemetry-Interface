@@ -1,0 +1,28 @@
+.box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--white-color);
+    padding-inline: 1rem;
+    padding-block: .2rem;
+    border-radius: 3px;
+}
+
+.box-container span.on {
+    color: var(--green-color);
+}
+
+.box-container span.off {
+    color: var(--red-color);
+}
+
+.box-container span {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.box-container img {
+    width: 1.25rem;
+    height: 1.25rem;
+}

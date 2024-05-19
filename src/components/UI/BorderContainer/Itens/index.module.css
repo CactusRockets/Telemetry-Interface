@@ -1,0 +1,13 @@
+.item-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-row .field {
+    color: var(--green-color);
+}
+
+.item-row .value {
+    color: var(--black-color);
+    padding-left: .5rem;
+}

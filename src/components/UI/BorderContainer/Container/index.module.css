@@ -1,0 +1,21 @@
+.border-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+    border: 2px solid var(--white-color);
+    border-radius: 5px;
+    color: var(--white-color);
+    font-weight: 500;
+}
+
+.border-container .container-title {
+    position: absolute;
+    top: -15px;
+
+    background-color: var(--white-color);
+    color: var(--green-color);
+    border-radius: 5px;
+    padding-inline: .5rem;
+}
