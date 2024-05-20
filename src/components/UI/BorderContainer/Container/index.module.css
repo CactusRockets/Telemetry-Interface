@@ -14,7 +14,7 @@
     
     font-size: 16px;
     
-    background-color: var(--white-color);
+    background-color: var(--background-color);
     color: var(--green-color);
     border-radius: 5px;
     padding-inline: .5rem;

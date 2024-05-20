@@ -13,8 +13,6 @@ const BorderBox = ({ title, value }: BorderBoxProps) => {
     useEffect(() => {
         if(titleElement.current && boxElement.current) {
             const titleWidth = titleElement.current.offsetWidth;
-            console.log(titleWidth);
-            
             boxElement.current.style.minWidth = `${titleWidth+40}px`;
         }
     }, [titleElement, boxElement])

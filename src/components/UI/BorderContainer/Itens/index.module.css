@@ -10,6 +10,5 @@
 }
 
 .item-row .value {
-    color: var(--black-color);
     padding-left: .5rem;
 }

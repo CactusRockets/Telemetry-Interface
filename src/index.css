@@ -15,6 +15,7 @@
   --black-color: #242424;
   --white-color: rgba(255, 255, 255, 0.93);
   --green-color: #3A9101;
+  --cactus-green-color: #3A9101;
   --red-color: rgb(253, 32, 32);
 
   --p-font-size: 15px;
@@ -65,7 +66,19 @@ body {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #272727;
-    background-color: #ffffff;
+    color: var(--black-color);
+    background-color: var(--white-color);
+
+    --background-color: var(--white-color);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--white-color);
+    background-color: var(--black-color);
+    
+    --background-color: var(--black-color);
+    --green-color: #54D201;
   }
 }
