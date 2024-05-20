@@ -22,8 +22,6 @@ const MainContainer = () => {
                         <BorderContainer.Itens field='Acc. X' value={'15m/s^2'} />
                         <BorderContainer.Itens field='Acc. Y' value={'15m/s^2'} />
                         <BorderContainer.Itens field='Acc. Z' value={'15m/s^2'} />
-                        <BorderContainer.Itens field='Tempo Skib 1' value={'15s'} />
-                        <BorderContainer.Itens field='Tempo Skib 2' value={'-'} />
                     </BorderContainer.Root>
                 </div>
                 <div className={ styles['right-container'] }>
