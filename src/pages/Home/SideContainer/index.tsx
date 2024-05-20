@@ -12,7 +12,7 @@ const SideContainer = () => {
                     <SkibBox text='SKIB 1' activated />
                     <SkibBox text='SKIB 2' />
                 </div>
-                <BorderContainer.Root title='Foguete'>
+                <BorderContainer.Root title='Foguete' className={ styles['border-container'] }>
                     <BorderContainer.Itens field='Motor' value={'Tipo J'} className={ styles['container-item'] } />
                     <BorderContainer.Itens field='Massa' value={'2.87Kg'} className={ styles['container-item'] } />
                     <BorderContainer.Itens field='Altura' value={'1.78m'} className={ styles['container-item'] } />

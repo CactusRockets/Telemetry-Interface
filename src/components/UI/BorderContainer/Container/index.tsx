@@ -12,7 +12,7 @@ interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
 const Container = ({ title, children, ...rest }: ContainerProps) => {
     return (
         <div className={ `${styles['border-container']} ${rest.className}` } >
-            <h3 className={ styles['container-title'] }>{ title }</h3>
+            <h3 className={ styles['title'] }>{ title }</h3>
             { children }
         </div>
     )

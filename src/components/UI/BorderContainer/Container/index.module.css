@@ -4,16 +4,16 @@
     flex-direction: column;
 
     padding: 1rem;
-    border: 2px solid var(--white-color);
+    border: 2px solid var(--green-color);
     border-radius: 5px;
-    color: var(--white-color);
-    font-weight: 500;
 }
 
-.border-container .container-title {
+.border-container .title {
     position: absolute;
     top: -15px;
-
+    
+    font-size: 16px;
+    
     background-color: var(--white-color);
     color: var(--green-color);
     border-radius: 5px;

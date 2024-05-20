@@ -4,6 +4,8 @@
 }
 
 .item-row .field {
+    font-weight: 600;
+    font-size: var(--p-font-size);
     color: var(--green-color);
 }
 

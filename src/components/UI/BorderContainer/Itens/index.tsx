@@ -9,7 +9,7 @@ interface ItensProps extends HTMLAttributes<HTMLDivElement> {
 const Itens = ({ field, value, ...rest }: ItensProps) => {
     return (
         <div className={ `${styles['item-row']} ${rest.className}` }>
-            <p className={ styles.field }>{ field }:</p>
+            <span className={ styles.field }>{ field }:</span>
             <p className={ styles.value }>{ value }</p>
         </div>       
     )

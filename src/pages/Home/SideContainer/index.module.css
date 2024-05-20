@@ -27,7 +27,11 @@
     margin-block: 1rem;
 }
 
-.side-container .container-item p,
+.side-container .border-container {
+    border-color: var(--white-color);
+}
+
+.side-container .container-item span,
 .side-container .container-item p {
     color: var(--white-color);
 }

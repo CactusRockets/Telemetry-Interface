@@ -1,13 +1,12 @@
 import styles from './index.module.css';
+import MainContainer from './MainContainer';
 import SideContainer from './SideContainer';
 
 const Home = () => {
     return (
         <div className={ styles['home-container'] }>
             <SideContainer />
-            <main className={ styles['main-container'] }>
-
-            </main>
+            <MainContainer />
         </div>
     )
 }
