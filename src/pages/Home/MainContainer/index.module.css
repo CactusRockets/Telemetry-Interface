@@ -3,6 +3,8 @@
     flex-direction: column;
     gap: 2rem;
     padding: 2rem;
+
+    flex: 1;
 }
 
 .main-container > header {
@@ -10,6 +12,20 @@
     gap: 2rem;
 }
 
+.main-container > section {
+    display: flex;
+    gap: 2rem;
+}
+
 .main-container .left-container {
-    max-width: 20rem;
+    min-width: 20rem;
+}
+
+.main-container .right-container {
+    flex: 1;
+}
+
+.main-container .right-container .bottom {
+    display: flex;
+    justify-content: space-between;
 }

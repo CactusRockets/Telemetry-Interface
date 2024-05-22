@@ -1,3 +1,4 @@
+import Map from '../../../components/Map';
 import BorderBox from '../../../components/UI/BorderBox';
 import BorderContainer from '../../../components/UI/BorderContainer';
 import styles from './index.module.css';
@@ -25,7 +26,11 @@ const MainContainer = () => {
                     </BorderContainer.Root>
                 </div>
                 <div className={ styles['right-container'] }>
-
+                    {/* Gráfico */}
+                    <div className={ styles.bottom }>
+                        <Map latitude={-9.4126997} longitude={-40.5152325} />
+                        {/* 3d */}
+                    </div>
                 </div>
             </section>
         </main>
