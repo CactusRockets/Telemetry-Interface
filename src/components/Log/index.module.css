@@ -1,0 +1,19 @@
+
+.logContainer {
+  height: 100%;
+  background-color: black;
+  
+  position: relative;
+}
+
+.contentContainer {
+  padding: 10px;
+  width: 300px;
+}
+
+.button {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: -15px;
+}

@@ -1,11 +1,13 @@
-// src/App.js
 import { useEffect, useState } from 'react';
+import styles from './index.module.css';
 
 const useESPIPforConection = false;
 
 function Log() {
   const [data, setData] = useState({});
   const [isConnected, setIsConnected] = useState(false);
+
+  const [isOpen, setIsOpen] = useState(true);
 
   const ESP32_HOSTNAME = 'esp32.local';
   // Substitua pelo IP real do seu ESP32
@@ -32,7 +34,9 @@ function Log() {
       websocket.onclose = () => {
         console.log('Desconectado do WebSocket');
         setIsConnected(false);
-        setTimeout(initWebSocket, 2000); // Tenta reconectar após 2 segundos
+
+        // Tenta reconectar após 2 segundos
+        setTimeout(initWebSocket, 2000);
       };
 
       websocket.onmessage = (event) => {
@@ -55,11 +59,19 @@ function Log() {
   }, [ESP32_HOSTNAME]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>ESP32 WebSocket Data</h1>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      </header>
+    <div className={styles.logContainer}>
+      {
+        isOpen
+        &&
+          <header className={styles.contentContainer}>
+            <h3>ESP32 WebSocket Data</h3>
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          </header>
+      }
+      
+      <a className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+        O
+      </a>
     </div>
   );
 }
