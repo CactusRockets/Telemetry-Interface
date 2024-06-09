@@ -5,7 +5,7 @@ import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 const useESPIPforConection = true;
 
 interface LogProps {
-  onDataChange: ({}) => void,
+  onDataChange: (data: dataProps) => void,
 }
 
 export interface dataProps {
