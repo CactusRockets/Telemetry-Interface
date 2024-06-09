@@ -2,6 +2,7 @@ import Map from '../../../components/Map';
 import BorderBox from '../../../components/UI/BorderBox';
 import BorderContainer from '../../../components/UI/BorderContainer';
 import styles from './index.module.css';
+import GraphContainer from '../GraphContainer';
 
 const MainContainer = () => {
     return (
@@ -33,6 +34,7 @@ const MainContainer = () => {
                     </div>
                 </div>
             </section>
+            <GraphContainer />
         </main>
     )
 }
