@@ -1,8 +1,8 @@
-
 .logContainer {
   height: 100%;
   background-color: black;
-  
+  display: flex;
+  flex-direction: row-reverse;
   position: relative;
 }
 
@@ -13,7 +13,16 @@
 
 .button {
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: -15px;
+  background-color: #2e2e2e;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  top: 20%;
+  height: 100%;
+  width: 2rem;
+}
+
+.logMainContainer{
+  display: flex;
+  flex-direction: row-reverse;
 }
