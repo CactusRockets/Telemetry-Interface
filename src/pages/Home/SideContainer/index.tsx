@@ -3,14 +3,26 @@ import cactusIcon from '../../../assets/cactus-logo.png';
 import SkibBox from '../../../components/UI/SkibBox';
 import BorderContainer from '../../../components/UI/BorderContainer';
 
-const SideContainer = () => {
+import { dataProps } from '../../../components/Log';
+
+interface SideContainerProps {
+    data: dataProps
+}
+
+const SideContainer = (props: SideContainerProps) => {
     return (
         <div className={ styles['side-container'] }>
             <img src={ cactusIcon } alt="" />
             <section>
                 <div className={ styles['skibs-container'] }>
-                    <SkibBox text='SKIB 1' activated />
-                    <SkibBox text='SKIB 2' />
+                    <SkibBox 
+                        text='SKIB 1' 
+                        // activated={props.data.skibs.skib1} 
+                    />
+                    <SkibBox 
+                        text='SKIB 2' 
+                        // activated={props.data.skibs.skib2}
+                    />
                 </div>
                 <BorderContainer.Root title='Foguete' className={ styles['border-container'] }>
                     <BorderContainer.Itens field='Motor' value={'Tipo J'} className={ styles['container-item'] } />
