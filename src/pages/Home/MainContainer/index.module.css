@@ -29,3 +29,9 @@
     display: flex;
     justify-content: space-between;
 }
+
+.graphsContainer {
+    display: flex;
+
+    border: 1px solid red;
+}

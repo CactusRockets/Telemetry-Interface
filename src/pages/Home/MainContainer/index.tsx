@@ -5,6 +5,7 @@ import styles from './index.module.css';
 import GraphContainer from '../GraphContainer';
 
 import { dataProps } from '../../../components/Log';
+import RocketModel from '../../../components/RocketModel';
 
 interface MainContainerProps {
     data: dataProps
@@ -40,7 +41,10 @@ const MainContainer = (props: MainContainerProps) => {
                     </div>
                 </div>
             </section>
-            <GraphContainer />
+            <div className={styles.graphsContainer}>
+                <GraphContainer />
+                <RocketModel />
+            </div>
         </main>
     )
 }

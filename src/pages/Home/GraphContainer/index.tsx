@@ -38,7 +38,7 @@ const GraphContainer: React.FC = () => {
   }, [data]);
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
+    <ResponsiveContainer width={500} height={300}>
       <LineChart
         width={730}
         height={250}
