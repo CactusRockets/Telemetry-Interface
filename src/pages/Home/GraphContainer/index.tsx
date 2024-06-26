@@ -18,10 +18,17 @@ interface DataGraphFormat {
   sensor3?: number;
 }
 
-const GraphContainer: React.FC = () => {
+interface GraphContainerProps {
+  width?: number;
+  height?: number;
+}
+
+const GraphContainer = ({
+  width=500, height=300
+}: GraphContainerProps) => {
   const { data, isConnected } = useWebSocket(true);
   const [dataList, setDataList] = useState<DataGraphFormat[]>([]);
-
+  
   useEffect(() => {
     const formatedData: DataGraphFormat = {
       index: dataList.length + 1,
@@ -38,7 +45,7 @@ const GraphContainer: React.FC = () => {
   }, [data]);
 
   return (
-    <ResponsiveContainer width={500} height={300}>
+    <ResponsiveContainer width={width} height={height}>
       <LineChart
         width={730}
         height={250}
