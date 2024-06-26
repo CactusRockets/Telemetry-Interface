@@ -49,9 +49,13 @@ function ThickAxesHelper({ size, thickness, position }: ThickAxesHelperProps) {
 }
 
 interface RocketModelProps {
-  angleX: number,
-  angleY: number,
-  angleZ: number,
+  q0: number,
+  q1: number,
+  q2: number,
+  q3: number,
+  angleX?: number,
+  angleY?:number,
+  angleZ?: number,
 }
 
 function RocketModel(props: RocketModelProps) {
@@ -68,9 +72,15 @@ function RocketModel(props: RocketModelProps) {
           <group 
             position={positionGroup}
             rotation={[
-              +props.angleX,
-              +props.angleZ,
-              -props.angleY,
+              props.angleX ? +props.angleX : 0,
+              props.angleZ ? +props.angleZ : 0,
+              props.angleY ? -props.angleY : 0,
+            ]}
+            quaternion={[
+              props.q0,
+              props.q1,
+              props.q2,
+              props.q3,
             ]}
           >
             <Model />
