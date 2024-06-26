@@ -39,7 +39,11 @@ const MainContainer = (props: MainContainerProps) => {
                     <GraphContainer width={700} height={280} />
                     <div className={ styles.bottom }>
                         <Map latitude={props.data.latitude} longitude={props.data.longitude} />
-                        <RocketModel />
+                        <RocketModel 
+                            angleX={0}
+                            angleY={0}
+                            angleZ={0}
+                        />
                     </div>
                 </div>
             </section>
