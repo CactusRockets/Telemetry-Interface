@@ -32,19 +32,17 @@ const MainContainer = (props: MainContainerProps) => {
                         <BorderContainer.Itens field='Acc. Y' value={`${props.data.accelerationY}m/s^2`} />
                         <BorderContainer.Itens field='Acc. Z' value={`${props.data.accelerationZ}m/s^2`} />
                     </BorderContainer.Root>
+                    <GraphContainer width={350} height={175} />
+                    <GraphContainer width={350} height={175} />
                 </div>
                 <div className={ styles['right-container'] }>
-                    {/* Gráfico */}
+                    <GraphContainer width={700} height={280} />
                     <div className={ styles.bottom }>
                         <Map latitude={props.data.latitude} longitude={props.data.longitude} />
-                        {/* 3d */}
+                        <RocketModel />
                     </div>
                 </div>
             </section>
-            <div className={styles.graphsContainer}>
-                <GraphContainer />
-                <RocketModel />
-            </div>
         </main>
     )
 }

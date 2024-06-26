@@ -6,8 +6,8 @@ type MapProps = {
 const Map = ({ latitude, longitude }: MapProps) => {
     return (
         <iframe
-            width="475"
-            height="250"
+            width="450"
+            height="230"
             style={{"border": 0}}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

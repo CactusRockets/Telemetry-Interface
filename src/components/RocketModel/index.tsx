@@ -20,7 +20,10 @@ function RocketModel() {
 
   return (
     <div className={styles.container}>
-      <Canvas>
+      <Canvas style={{
+        width: 230,
+        height: 230
+      }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <Suspense fallback={null}>
