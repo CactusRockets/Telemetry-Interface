@@ -4,9 +4,6 @@ import styles from './styles.module.css';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 
-import { AxesHelper } from 'three';
-import { Vector3, CylinderGeometry, MeshBasicMaterial, Mesh } from 'three';
-
 const positionGroup: [number, number, number] = [-0.2, -0.5, -0.5];
 const positionOrigin: [number, number, number] = [0, -2, 0];
 

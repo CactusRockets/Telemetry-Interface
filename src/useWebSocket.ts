@@ -1,25 +1,5 @@
 import { useEffect, useState } from "react";
-
-export interface dataProps {
-  maximumAltitude: number;
-  altitude: number;
-  maximumVelocity: number;
-  velocity: number;
-  maximumAcceleration: number;
-  acceleration: number;
-  velocityX: number;
-  velocityY: number;
-  velocityZ: number;
-  accelerationX: number;
-  accelerationY: number;
-  accelerationZ: number;
-  latitude: number;
-  longitude: number;
-  skibs: {
-    skib1: boolean;
-    skib2: boolean;
-  };
-}
+import { IUseWebSocket, dataProps, rawData } from "./IUseWebSocket";
 
 const defaultData: dataProps = {
   maximumAltitude: 0,
@@ -42,28 +22,36 @@ const defaultData: dataProps = {
   },
 };
 
-const defaultData2: sensorData = {
-  sensor1: 0,
-  sensor2: 0
-};
-
-interface sensorData {
-  sensor1: number;
-  sensor2: number;
-  sensor3?: number;
-}
-
-interface IUseWebSocket {
-  data: sensorData,
-  isConnected: boolean
-}
-
 export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
-  const [data, setData] = useState<sensorData>(defaultData2);
+  const [data, setData] = useState<dataProps>(defaultData);
   const [isConnected, setIsConnected] = useState(false);
 
   const ESP32_HOSTNAME = "esp32.local";
-  const ESP32_IP = "192.168.216.228";
+  const ESP32_IP = "192.168.1.15";
+  
+  const putData = (rawData: rawData) => {
+    const data : dataProps = {
+      maximumAltitude: rawData.maximumAltitude,
+      altitude: rawData.altitude,
+      maximumVelocity: rawData.maximumVelocity,
+      velocity: rawData.velocity,
+      maximumAcceleration: rawData.maximumAcceleration,
+      acceleration: rawData.acceleration,
+      velocityX: rawData.velocityX,
+      velocityY: rawData.velocityY,
+      velocityZ: rawData.velocityZ,
+      accelerationX: rawData.accelerationX,
+      accelerationY: rawData.accelerationY,
+      accelerationZ: rawData.accelerationZ,
+      latitude: rawData.latitude,
+      longitude: rawData.longitude,
+      skibs: {
+        skib1: rawData.skib1,
+        skib2: rawData.skib2,
+      },
+    }
+    setData(data);
+  }
 
   const webSocketConnection = () => {
     let gateway: string;
@@ -92,7 +80,7 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
 
       websocket.onmessage = (event) => {
         console.log("Mensagem recebida:", event.data);
-        setData(JSON.parse(event.data));
+        putData(JSON.parse(event.data));
       };
 
       websocket.onerror = (error) => {
