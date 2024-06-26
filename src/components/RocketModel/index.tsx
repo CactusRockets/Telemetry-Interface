@@ -7,21 +7,18 @@ import { OrbitControls, useGLTF } from '@react-three/drei';
 import { AxesHelper } from 'three';
 import { Vector3, CylinderGeometry, MeshBasicMaterial, Mesh } from 'three';
 
-interface RocketModelProps {
-  angleX: number,
-  angleY: number,
-  angleZ: number,
-}
+const positionGroup: [number, number, number] = [-0.2, -0.5, -0.5];
+const positionOrigin: [number, number, number] = [0, -2, 0];
 
-function Model({ angleX, angleY, angleZ }: RocketModelProps) {
+function Model() {
   const { scene, materials } = useGLTF('/rocket model0.glb');
   return (
     <primitive 
       object={scene} 
       material={materials}
       scale={[0.3, 0.3, 0.3]} 
-      position={[0, -2.5, 0]}
-      rotation={[angleX + 0, angleZ + 0, -angleY + 0]}
+      position={positionOrigin}
+      rotation={[0, 0, 0]}
     />
   );
 }
@@ -29,11 +26,12 @@ function Model({ angleX, angleY, angleZ }: RocketModelProps) {
 interface ThickAxesHelperProps {
   size: number;
   thickness: number;
+  position: [number, number, number];
 }
 
-function ThickAxesHelper({ size, thickness }: ThickAxesHelperProps) {
+function ThickAxesHelper({ size, thickness, position }: ThickAxesHelperProps) {
   return (
-    <group>
+    <group position={position}>
       <mesh position={[size / 2, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[thickness / 2, thickness / 2, size, 32]} />
         <meshBasicMaterial color="red" />
@@ -50,6 +48,12 @@ function ThickAxesHelper({ size, thickness }: ThickAxesHelperProps) {
   );
 }
 
+interface RocketModelProps {
+  angleX: number,
+  angleY: number,
+  angleZ: number,
+}
+
 function RocketModel(props: RocketModelProps) {
 
   return (
@@ -58,14 +62,23 @@ function RocketModel(props: RocketModelProps) {
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <Suspense fallback={null}>
-          <Model 
-            angleX={props.angleX}
-            angleY={props.angleY}
-            angleZ={props.angleZ}
+          <group 
+            position={positionGroup}
+            rotation={[
+              +props.angleX,
+              +props.angleZ,
+              -props.angleY,
+            ]}
+          >
+            <Model />
+          </group>
+          <ThickAxesHelper 
+            size={10} 
+            thickness={0.05}
+            position={positionGroup}
           />
         </Suspense>
         <OrbitControls />
-        <ThickAxesHelper size={10} thickness={0.1}/>
       </Canvas>
     </div>
   )
