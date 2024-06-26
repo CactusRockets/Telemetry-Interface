@@ -43,7 +43,11 @@ const MainContainer = (props: MainContainerProps) => {
             </section>
             <div className={styles.graphsContainer}>
                 <GraphContainer />
-                <RocketModel />
+                <RocketModel 
+                    angleX={0}
+                    angleY={0}
+                    angleZ={0}
+                />
             </div>
         </main>
     )
