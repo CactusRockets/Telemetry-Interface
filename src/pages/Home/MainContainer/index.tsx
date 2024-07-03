@@ -61,6 +61,7 @@ const MainContainer = (props: MainContainerProps) => {
               value={`${props.data.accelerationZ}m/s^2`}
             />
           </BorderContainer.Root>
+          <div style={{ padding: 10 }}></div>
           <GraphContainer width={350} height={175} graphType={"velocity"}/>
           <GraphContainer width={350} height={175} graphType={"acceleration"}/>
         </div>

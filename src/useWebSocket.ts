@@ -27,7 +27,7 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
   const [isConnected, setIsConnected] = useState(false);
 
   const ESP32_HOSTNAME = "esp32.local";
-  const ESP32_IP = "192.168.1.15";
+  const ESP32_IP = "192.168.13.235";
   
   const putData = (rawData: rawData) => {
     const data : dataProps = {

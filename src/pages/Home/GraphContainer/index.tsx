@@ -98,9 +98,9 @@ const GraphContainer = ({
   }
 
   return (
-    <>
-      <h2 className={styles["graph-title"]}>{GraphTitle}</h2>
+    <div style={{ marginTop: 0, marginBottom: 5 }}>
 
+      <h2 className={styles["graph-title"]}>{GraphTitle}</h2>
       <ResponsiveContainer width={width} height={height}>
         <LineChart
           width={730}
@@ -114,10 +114,10 @@ const GraphContainer = ({
             strokeOpacity={0.1}
           />
           <XAxis dataKey="name">
-            <Label value="Leitura" offset={-10} position="insideBottom" />
+            <Label value="Leitura" dy={0} position="insideBottom" />
           </XAxis>
           <YAxis domain={[0, "auto"]}>
-            <Label value={YAxisLabel} angle={-90} position="insideLeft" />
+            <Label value={YAxisLabel} dx={-20} angle={-90} position="inside" />
           </YAxis>
           <Tooltip />
           <Legend />
@@ -126,7 +126,7 @@ const GraphContainer = ({
           <Line type="linear" dataKey="sensor3" stroke="red" />
         </LineChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 };
 
