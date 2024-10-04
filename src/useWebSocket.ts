@@ -16,6 +16,10 @@ const defaultData: dataProps = {
   accelerationZ: 0,
   latitude: 0,
   longitude: 0,
+  quaternionX: 0,
+  quaternionW: 0,
+  quaternionY: 0,
+  quaternionZ: 0,
   skibs: {
     skib1: true,
     skib2: false,

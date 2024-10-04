@@ -72,7 +72,12 @@ const MainContainer = (props: MainContainerProps) => {
               latitude={props.data.latitude}
               longitude={props.data.longitude}
             />
-            <RocketModel q0={0} q1={0} q2={0} q3={0} />
+            <RocketModel 
+              q0={props.data.quaternionW} 
+              q1={props.data.quaternionX} 
+              q2={props.data.quaternionY} 
+              q3={props.data.quaternionZ} 
+            />
           </div>
         </div>
       </section>

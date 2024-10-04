@@ -13,6 +13,10 @@ export interface dataProps {
   accelerationZ: number;
   latitude: number;
   longitude: number;
+  quaternionX: number;
+  quaternionW: number;
+  quaternionY: number;
+  quaternionZ: number;
   skibs: {
     skib1: boolean;
     skib2: boolean;
