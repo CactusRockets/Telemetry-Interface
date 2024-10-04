@@ -27,10 +27,10 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
   const [isConnected, setIsConnected] = useState(false);
 
   const ESP32_HOSTNAME = "esp32.local";
-  const ESP32_IP = "192.168.13.235";
-  
+  const ESP32_IP = "192.168.202.19";
+
   const putData = (rawData: rawData) => {
-    const data : dataProps = {
+    const data: dataProps = {
       maximumAltitude: rawData.maximumAltitude,
       altitude: rawData.altitude,
       maximumVelocity: rawData.maximumVelocity,
@@ -49,9 +49,9 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
         skib1: rawData.skib1,
         skib2: rawData.skib2,
       },
-    }
+    };
     setData(data);
-  }
+  };
 
   const webSocketConnection = () => {
     let gateway: string;

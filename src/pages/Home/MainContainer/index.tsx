@@ -69,8 +69,8 @@ const MainContainer = (props: MainContainerProps) => {
           <GraphContainer width={700} height={280} graphType={"altitude"}/>
           <div className={styles.bottom}>
             <Map
-              latitude={props.data.latitude}
-              longitude={props.data.longitude}
+              latitude={props.data.latitude || -9.379634}
+              longitude={props.data.longitude || -40.539549}
             />
             <RocketModel q0={0} q1={0} q2={0} q3={0} />
           </div>
