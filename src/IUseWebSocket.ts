@@ -13,10 +13,10 @@ export interface dataProps {
   accelerationZ: number;
   latitude: number;
   longitude: number;
-  quaternionX: number;
-  quaternionW: number;
-  quaternionY: number;
-  quaternionZ: number;
+  quaternion_w: number;
+  quaternion_x: number;
+  quaternion_y: number;
+  quaternion_z: number;
   skibs: {
     skib1: boolean;
     skib2: boolean;
@@ -38,6 +38,10 @@ export interface rawData {
   accelerationZ: number;
   latitude: number;
   longitude: number;
+  quaternion_w: number;
+  quaternion_x: number;
+  quaternion_y: number;
+  quaternion_z: number;
   skib1: boolean;
   skib2: boolean;
 }
@@ -49,6 +53,6 @@ export interface sensorData {
 }
 
 export interface IUseWebSocket {
-  data: dataProps,
-  isConnected: boolean
+  data: dataProps;
+  isConnected: boolean;
 }

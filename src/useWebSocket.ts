@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IUseWebSocket, dataProps, rawData } from "./IUseWebSocket";
 
-const defaultData: dataProps = {
+export const defaultData: dataProps = {
   maximumAltitude: 0,
   altitude: 0,
   maximumVelocity: 0,
@@ -16,10 +16,10 @@ const defaultData: dataProps = {
   accelerationZ: 0,
   latitude: 0,
   longitude: 0,
-  quaternionX: 0,
-  quaternionW: 0,
-  quaternionY: 0,
-  quaternionZ: 0,
+  quaternion_w: 0,
+  quaternion_x: 0,
+  quaternion_y: 0,
+  quaternion_z: 0,
   skibs: {
     skib1: true,
     skib2: false,
@@ -31,10 +31,10 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
   const [isConnected, setIsConnected] = useState(false);
 
   const ESP32_HOSTNAME = "esp32.local";
-  const ESP32_IP = "192.168.13.235";
-  
+  const ESP32_IP = "192.168.232.158";
+
   const putData = (rawData: rawData) => {
-    const data : dataProps = {
+    const data: dataProps = {
       maximumAltitude: rawData.maximumAltitude,
       altitude: rawData.altitude,
       maximumVelocity: rawData.maximumVelocity,
@@ -47,15 +47,20 @@ export const useWebSocket = (useESPIPforConection: boolean): IUseWebSocket => {
       accelerationX: rawData.accelerationX,
       accelerationY: rawData.accelerationY,
       accelerationZ: rawData.accelerationZ,
+      quaternion_w: rawData.quaternion_w,
+      quaternion_x: rawData.quaternion_x,
+      quaternion_y: rawData.quaternion_y,
+      quaternion_z: rawData.quaternion_z,
       latitude: rawData.latitude,
       longitude: rawData.longitude,
       skibs: {
         skib1: rawData.skib1,
         skib2: rawData.skib2,
       },
-    }
+    };
+    console.log(data.skibs);
     setData(data);
-  }
+  };
 
   const webSocketConnection = () => {
     let gateway: string;

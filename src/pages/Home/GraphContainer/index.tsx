@@ -99,7 +99,6 @@ const GraphContainer = ({
 
   return (
     <div style={{ marginTop: 0, marginBottom: 5 }}>
-
       <h2 className={styles["graph-title"]}>{GraphTitle}</h2>
       <ResponsiveContainer width={width} height={height}>
         <LineChart
@@ -108,11 +107,7 @@ const GraphContainer = ({
           data={dataList}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-          <CartesianGrid
-            strokeWidth={0}
-            stroke="#e0e0e0"
-            strokeOpacity={0.1}
-          />
+          <CartesianGrid strokeWidth={0} stroke="#e0e0e0" strokeOpacity={0.1} />
           <XAxis dataKey="name">
             <Label value="Leitura" dy={0} position="insideBottom" />
           </XAxis>
@@ -121,9 +116,24 @@ const GraphContainer = ({
           </YAxis>
           <Tooltip />
           <Legend />
-          <Line type="linear" dataKey="sensor1" stroke="#8884d8" />
-          <Line type="linear" dataKey="sensor2" stroke="#82ca9d" />
-          <Line type="linear" dataKey="sensor3" stroke="red" />
+          <Line
+            type="linear"
+            dataKey="sensor1"
+            stroke="#8884d8"
+            animateNewValues={false}
+          />
+          <Line
+            type="linear"
+            dataKey="sensor2"
+            stroke="#82ca9d"
+            animateNewValues={false}
+          />
+          <Line
+            type="linear"
+            dataKey="sensor3"
+            stroke="red"
+            animateNewValues={false}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>

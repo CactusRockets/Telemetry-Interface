@@ -1,19 +1,19 @@
-import { Suspense } from 'react';
-import styles from './styles.module.css';
+import { Suspense } from "react";
+import styles from "./styles.module.css";
 
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 
 const positionGroup: [number, number, number] = [-0.2, -0.5, -0.5];
 const positionOrigin: [number, number, number] = [0, -2, 0];
 
 function Model() {
-  const { scene, materials } = useGLTF('/rocket model0.glb');
+  const { scene, materials } = useGLTF("/rocket model0.glb");
   return (
-    <primitive 
-      object={scene} 
+    <primitive
+      object={scene}
       material={materials}
-      scale={[0.3, 0.3, 0.3]} 
+      scale={[0.3, 0.3, 0.3]}
       position={positionOrigin}
       rotation={[0, 0, 0]}
     />
@@ -46,44 +46,40 @@ function ThickAxesHelper({ size, thickness, position }: ThickAxesHelperProps) {
 }
 
 interface RocketModelProps {
-  q0: number,
-  q1: number,
-  q2: number,
-  q3: number,
-  angleX?: number,
-  angleY?:number,
-  angleZ?: number,
+  q0: number;
+  q1: number;
+  q2: number;
+  q3: number;
+  angleX?: number;
+  angleY?: number;
+  angleZ?: number;
 }
 
 function RocketModel(props: RocketModelProps) {
-
   return (
     <div className={styles.container}>
-      <Canvas style={{
-        width: 230,
-        height: 230
-      }}>
+      <Canvas
+        style={{
+          width: 230,
+          height: 230,
+        }}
+      >
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} />
         <Suspense fallback={null}>
-          <group 
+          <group
             position={positionGroup}
-            rotation={[
-              props.angleX ? +props.angleX : 0,
-              props.angleZ ? +props.angleZ : 0,
-              props.angleY ? -props.angleY : 0,
-            ]}
-            quaternion={[
-              props.q0,
-              props.q1,
-              props.q2,
-              props.q3,
-            ]}
+            // rotation={[
+            //   props.angleX ? +props.angleX : 0,
+            //   props.angleZ ? +props.angleZ : 0,
+            //   props.angleY ? -props.angleY : 0,
+            // ]}
+            quaternion={[props.q0, props.q1, props.q2, props.q3]}
           >
             <Model />
           </group>
-          <ThickAxesHelper 
-            size={10} 
+          <ThickAxesHelper
+            size={10}
             thickness={0.05}
             position={positionGroup}
           />
@@ -91,7 +87,7 @@ function RocketModel(props: RocketModelProps) {
         <OrbitControls />
       </Canvas>
     </div>
-  )
+  );
 }
 
 export default RocketModel;
