@@ -36,7 +36,7 @@ const GraphContainer = ({
   height = 300,
   graphType = "altitude",
 }: GraphContainerPropsModified) => {
-  const { data, isConnected } = useWebSocket(true);
+  const { data, isConnected } = useWebSocket(false);
   const [dataList, setDataList] = useState<DataGraphFormat[]>([]);
 
   const getSensorData = (type: GraphOptions = "altitude"): DataGraphFormat => {

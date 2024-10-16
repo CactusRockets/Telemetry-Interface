@@ -8,7 +8,7 @@ interface LogProps {
 }
 
 function Log({ onDataChange }: LogProps) {
-  const { data, isConnected } = useWebSocket(true);
+  const { data, isConnected } = useWebSocket(false);
   const [isOpen, setIsOpen] = useState(true);
   const [historyData, setHistoryData] = useState<dataProps[]>([]);
 
