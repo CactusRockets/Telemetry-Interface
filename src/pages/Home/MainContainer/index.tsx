@@ -89,6 +89,7 @@ const MainContainer = (props: MainContainerProps) => {
               q3={props.data.quaternion_z}
             />
           </div>
+          <p>{`Chave API: `}AIzaSyDmIuEPFOQHVjiMUQ1sbeQ1Dck-1FQT-bQ</p>
         </div>
       </section>
     </main>

@@ -50,7 +50,7 @@ const SideContainer = (props: SideContainerProps) => {
         </BorderContainer.Root>
       </section>
       <footer>
-        <p>Cactus Rocket</p>
+        <p>Cactus Rockets</p>
       </footer>
     </div>
   );
