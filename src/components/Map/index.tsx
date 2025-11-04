@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
+import { useState } from "react";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 type MapProps = {
-    latitude: number;
-    longitude: number;
+  latitude: number;
+  longitude: number;
 };
 
 const mapContainerStyle = {
@@ -17,7 +17,6 @@ const options = {
 };
 
 const Map = ({ latitude, longitude }: MapProps) => {
-  
   const [showMarker, setShowMarker] = useState(false);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -45,10 +44,7 @@ const Map = ({ latitude, longitude }: MapProps) => {
       options={options}
       onClick={() => setShowMarker(true)}
     >
-      {
-        showMarker &&
-        <Marker position={location} />
-      }
+      {showMarker && <Marker position={location} />}
     </GoogleMap>
   );
 };
