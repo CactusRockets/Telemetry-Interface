@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# 🛰️ Interface de Telemetria
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Software desenvolvido em React para permitir a visualização de dados de vôo transmitidos pela aviônica dos foguetes desenvolvido pela equipe Cactus Rocket Design
+Apresenta através de uma série de gráficos e elementos visuais dados como:
 
-Currently, two official plugins are available:
+1. Altitude atual do foguete
+2. Velocidade nos diferentes eixos tridimensionais (X,Y,Z)
+3. Aceleração nos diferentes eixos tridimensionais (X,Y,Z)
+4. Localização atual em GPS
+5. Posição espacial (com base em quaternions)
+6. Acionamento dos paraquedas principal e drogue
+7. Máxima velocidade e altura alcançada
+8. Logging dos dados recebidos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2><Strong>Prints da interface em ação</Strong></h2>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a01de395-8392-41dd-960e-31ff0e06e472" width="800">
+</p>
 
-## Expanding the ESLint configuration
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/02583fa1-4587-4375-8efc-5e7601da611e" width="800">
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# 🛠️ Como Executar o Projeto?
 
-- Configure the top-level `parserOptions` property like this:
+Como é um projeto react, basta ter o React atualizado no seu sistema e, após clonar a pasta da aplicação, executar
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+``` cmd
+npm install
+``` 
+(para instalar as dependências do projeto)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+``` cmd
+npm run start
+``` 
+(para iniciar a aplicação em localhost)
+
+# 🧩 Outras imagens
+
+Imagens do uso do sistema durante a LASC 2025 (Latin America Space Challenge)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f2d247c0-454c-4ded-b5fa-b4795c1326d7" width="400">
+  <img src="https://github.com/user-attachments/assets/db9bc9e7-1488-4e94-a227-413c91165379" width="400">
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/06779094-d4fb-4856-8fb7-e37d70923df0" width="800">
+</p>
+
+
+
