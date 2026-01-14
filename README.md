@@ -1,4 +1,4 @@
-# 🛰️ Interface de Telemetria
+# Interface de Telemetria
 
 Software desenvolvido em React para permitir a visualização de dados de vôo transmitidos pela aviônica dos foguetes desenvolvido pela equipe Cactus Rocket Design
 Apresenta através de uma série de gráficos e elementos visuais dados como:
@@ -17,25 +17,26 @@ Apresenta através de uma série de gráficos e elementos visuais dados como:
   <img src="https://github.com/user-attachments/assets/a01de395-8392-41dd-960e-31ff0e06e472" width="800">
 </p>
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/02583fa1-4587-4375-8efc-5e7601da611e" width="800">
-</p>
+# Como Executar o Projeto?
 
-# 🛠️ Como Executar o Projeto?
+Como é um projeto React, basta ter o Git, NodeJs e o React atualizado no seu sistema. Após isso, executamos os seguintes comandos no terminal:
 
-Como é um projeto react, basta ter o React atualizado no seu sistema e, após clonar a pasta da aplicação, executar
+```
+git clone https://github.com/CactusRockets/Telemetry-Interface
+``` 
+(para clonar o repositório em seu computador)
 
-``` cmd
+```
 npm install
 ``` 
 (para instalar as dependências do projeto)
 
-``` cmd
+```
 npm run start
 ``` 
 (para iniciar a aplicação em localhost)
 
-# 🧩 Outras imagens
+# Outras imagens
 
 Imagens do uso do sistema durante a LASC 2025 (Latin America Space Challenge)
 <p align="center">
