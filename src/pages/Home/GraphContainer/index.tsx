@@ -1,141 +1,153 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  CartesianGrid,
+  Legend,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  Label,
 } from "recharts";
-import { useWebSocket } from "../../../useWebSocket";
+import { AvionicsData } from "../../../types/avionics";
 import styles from "./index.module.css";
 
-interface DataGraphFormat {
-  index: number;
-  sensor1: number;
-  sensor2?: number;
-  sensor3?: number;
+const HISTORY_LENGTH = 120;
+
+type GraphType = "altitude" | "velocity" | "acceleration";
+
+interface DataPoint {
+  i: number;
+  [key: string]: number;
+}
+
+interface SeriesConfig {
+  key: string;
+  name: string;
+  color: string;
+}
+
+const CONFIGS: Record<GraphType, { title: string; unit: string; series: SeriesConfig[] }> = {
+  altitude: {
+    title: "ALTITUDE",
+    unit: "m",
+    series: [{ key: "alt", name: "Altitude", color: "#4adc61" }],
+  },
+  velocity: {
+    title: "VELOCITY",
+    unit: "m/s",
+    series: [
+      { key: "vel", name: "Total", color: "#4adc61" },
+      { key: "vX",  name: "X",     color: "#5592e8" },
+      { key: "vY",  name: "Y",     color: "#a57de8" },
+      { key: "vZ",  name: "Z",     color: "#d4a82e" },
+    ],
+  },
+  acceleration: {
+    title: "ACCELERATION",
+    unit: "m/s²",
+    series: [
+      { key: "acc", name: "Total", color: "#4adc61" },
+      { key: "aX",  name: "X",     color: "#5592e8" },
+      { key: "aY",  name: "Y",     color: "#a57de8" },
+      { key: "aZ",  name: "Z",     color: "#d4a82e" },
+    ],
+  },
+};
+
+function buildDataPoint(data: AvionicsData, type: GraphType, index: number): DataPoint {
+  switch (type) {
+    case "altitude":
+      return { i: index, alt: data.altitude };
+    case "velocity":
+      return { i: index, vel: data.velocity, vX: data.velocityX, vY: data.velocityY, vZ: data.velocityZ };
+    case "acceleration":
+      return { i: index, acc: data.acceleration, aX: data.accelerationX, aY: data.accelerationY, aZ: data.accelerationZ };
+  }
 }
 
 interface GraphContainerProps {
-  width?: number;
+  data: AvionicsData;
+  isConnected: boolean;
+  graphType: GraphType;
   height?: number;
 }
 
-type GraphOptions = "altitude" | "velocity" | "acceleration";
+const TOOLTIP_STYLE = {
+  contentStyle: {
+    background: "#161d27",
+    border: "1px solid #27333f",
+    borderRadius: "6px",
+    fontSize: "11px",
+    color: "#dce6f0",
+  },
+  labelStyle: { color: "#8b949e" },
+};
 
-interface GraphContainerPropsModified extends GraphContainerProps {
-  graphType: GraphOptions;
-}
-
-const GraphContainer = ({
-  width = 500,
-  height = 300,
-  graphType = "altitude",
-}: GraphContainerPropsModified) => {
-  const { data, isConnected } = useWebSocket(false);
-  const [dataList, setDataList] = useState<DataGraphFormat[]>([]);
-
-  const getSensorData = (type: GraphOptions = "altitude"): DataGraphFormat => {
-    switch (type) {
-      case "altitude":
-        return {
-          index: dataList.length + 1,
-          sensor1: data.altitude,
-        };
-      case "velocity":
-        return {
-          index: dataList.length + 1,
-          sensor1: data.velocityX,
-          sensor2: data.velocityY,
-          sensor3: data.velocityZ,
-        };
-      case "acceleration":
-        return {
-          index: dataList.length + 1,
-          sensor1: data.accelerationX,
-          sensor2: data.accelerationY,
-          sensor3: data.accelerationZ,
-        };
-      default:
-        return {
-          index: dataList.length + 1,
-          sensor1: 0,
-        };
-    }
-  };
+const GraphContainer = ({ data, isConnected, graphType, height = 160 }: GraphContainerProps) => {
+  const [history, setHistory] = useState<DataPoint[]>([]);
+  const config = CONFIGS[graphType];
 
   useEffect(() => {
-    if (isConnected) {
-      const formatedData = getSensorData(graphType);
-
-      setDataList((prevDataList) => {
-        const updatedDataList =
-          prevDataList.length >= 50 ? prevDataList.slice(1) : prevDataList;
-        return [...updatedDataList, formatedData];
-      });
-    } else {
-      console.log("Erro: Conexão com ESP comprometida");
-    }
-  }, [data]);
-
-  let YAxisLabel;
-  let GraphTitle;
-  if (graphType === "altitude") {
-    GraphTitle = "Altitude";
-    YAxisLabel = "Altitude";
-  }
-  if (graphType === "velocity") {
-    GraphTitle = "Velocidade Instântanea";
-    YAxisLabel = "Velocidade";
-  }
-  if (graphType === "acceleration") {
-    GraphTitle = "Aceleração Instântanea";
-    YAxisLabel = "Aceleração";
-  }
+    if (!isConnected) return;
+    setHistory((prev) => {
+      const point = buildDataPoint(data, graphType, prev.length + 1);
+      const base = prev.length >= HISTORY_LENGTH ? prev.slice(1) : prev;
+      return [...base, point];
+    });
+  }, [data, isConnected]);
 
   return (
-    <div style={{ marginTop: 0, marginBottom: 5 }}>
-      <h2 className={styles["graph-title"]}>{GraphTitle}</h2>
-      <ResponsiveContainer width={width} height={height}>
-        <LineChart
-          width={730}
-          height={250}
-          data={dataList}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-        >
-          <CartesianGrid strokeWidth={0} stroke="#e0e0e0" strokeOpacity={0.1} />
-          <XAxis dataKey="name">
-            <Label value="Leitura" dy={0} position="insideBottom" />
-          </XAxis>
-          <YAxis domain={[0, "auto"]}>
-            <Label value={YAxisLabel} dx={-20} angle={-90} position="inside" />
-          </YAxis>
-          <Tooltip />
-          <Legend />
-          <Line
-            type="linear"
-            dataKey="sensor1"
-            stroke="#8884d8"
-            animateNewValues={false}
-          />
-          <Line
-            type="linear"
-            dataKey="sensor2"
-            stroke="#82ca9d"
-            animateNewValues={false}
-          />
-          <Line
-            type="linear"
-            dataKey="sensor3"
-            stroke="red"
-            animateNewValues={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <span className={styles.title}>{config.title}</span>
+        <span className={styles.unit}>{config.unit}</span>
+      </div>
+
+      {history.length === 0 ? (
+        <div className={styles.empty} style={{ height }}>
+          <span>Waiting for data…</span>
+        </div>
+      ) : (
+        <ResponsiveContainer width="100%" height={height}>
+          <LineChart data={history} margin={{ top: 4, right: 12, left: 0, bottom: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#1d2636" />
+            <XAxis
+              dataKey="i"
+              stroke="#27333f"
+              tick={{ fill: "#404b58", fontSize: 10 }}
+              tickLine={false}
+            />
+            <YAxis
+              stroke="#27333f"
+              tick={{ fill: "#404b58", fontSize: 10 }}
+              tickLine={false}
+              width={42}
+              domain={["auto", "auto"]}
+            />
+            <Tooltip
+              contentStyle={TOOLTIP_STYLE.contentStyle}
+              labelStyle={TOOLTIP_STYLE.labelStyle}
+              formatter={(val: number) => val.toFixed(2)}
+            />
+            <Legend
+              wrapperStyle={{ fontSize: "10px", color: "#8b949e", paddingTop: "4px" }}
+            />
+            {config.series.map((s) => (
+              <Line
+                key={s.key}
+                type="linear"
+                dataKey={s.key}
+                name={s.name}
+                stroke={s.color}
+                dot={false}
+                strokeWidth={1.5}
+                isAnimationActive={false}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 };

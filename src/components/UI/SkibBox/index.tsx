@@ -1,19 +1,18 @@
 import styles from './index.module.css';
-import skibOnIcon from '../../../assets/icons/lightbulb.svg';
-import skibOffIcon from '../../../assets/icons/light_off.svg';
 
-type SkibBoxProps = {
-    text: string
-    activated?: boolean
-}
+type SkibIndicatorProps = {
+  text: string;
+  activated?: boolean;
+};
 
-const SkibBox = ({ text, activated }: SkibBoxProps) => {
-    return (
-        <div className={ styles['box-container'] }>
-            <img src={ activated ? skibOnIcon : skibOffIcon } alt="" />
-            <span className={ activated ? styles.on : styles.off }>{ text }</span>
-        </div>
-    )
-}
+const SkibIndicator = ({ text, activated = false }: SkibIndicatorProps) => {
+  return (
+    <div className={`${styles.indicator} ${activated ? styles.active : styles.inactive}`}>
+      <div className={styles.dot} />
+      <span className={styles.label}>{text}</span>
+      <span className={styles.status}>{activated ? 'ARMED' : 'SAFE'}</span>
+    </div>
+  );
+};
 
-export default SkibBox
+export default SkibIndicator;

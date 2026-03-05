@@ -1,28 +1,18 @@
-import { useEffect, useRef } from 'react';
 import styles from './index.module.css';
 
-interface BorderBoxProps {
-    title: string
-    value: string | number
+interface MetricCardProps {
+  title: string;
+  value: string | number;
+  highlight?: boolean;
 }
 
-const BorderBox = ({ title, value }: BorderBoxProps) => {
-    const titleElement = useRef<HTMLHRElement>(null);
-    const boxElement = useRef<HTMLDivElement>(null);
+const MetricCard = ({ title, value, highlight = false }: MetricCardProps) => {
+  return (
+    <div className={`${styles.card} ${highlight ? styles.highlight : ''}`}>
+      <span className={styles.label}>{title}</span>
+      <span className={styles.value}>{value}</span>
+    </div>
+  );
+};
 
-    useEffect(() => {
-        if(titleElement.current && boxElement.current) {
-            const titleWidth = titleElement.current.offsetWidth;
-            boxElement.current.style.minWidth = `${titleWidth+40}px`;
-        }
-    }, [titleElement, boxElement])
-
-    return (
-        <div ref={boxElement} className={styles["box-container"]}>
-            <h3 ref={titleElement} className={ styles.title }>{ title }</h3>
-            <p className={ styles.value }>{ value }</p>
-        </div>
-    )
-}
-
-export default BorderBox;
+export default MetricCard;

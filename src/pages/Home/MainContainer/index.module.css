@@ -1,31 +1,102 @@
-.main-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-
-    flex: 1;
+.dashboard {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 1.125rem;
+  overflow-y: auto;
 }
 
-.main-container > header {
-    display: flex;
-    gap: 2rem;
+/* Test mode banner */
+.testBanner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  background: rgba(212, 168, 46, 0.1);
+  border: 1px solid rgba(212, 168, 46, 0.3);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
 }
 
-.main-container > section {
-    display: flex;
-    gap: 2rem;
+.testBanner span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--yellow);
 }
 
-.main-container .left-container {
-    min-width: 20rem;
+/* Metrics row */
+.metricsRow {
+  display: flex;
+  gap: 0.625rem;
+  flex-shrink: 0;
 }
 
-.main-container .right-container {
-    flex: 1;
+/* Charts column */
+.chartsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
 }
 
-.main-container .right-container .bottom {
-    display: flex;
-    justify-content: space-between;
+.chartsRow {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.chartsRow > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Visuals row: Map + 3D model */
+.visualsRow {
+  display: flex;
+  gap: 0.625rem;
+  min-height: 230px;
+}
+
+.visualPanel {
+  flex: 3;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.visualPanelNarrow {
+  flex: 2;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.875rem;
+  border-bottom: 1px solid var(--border-default);
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+}
+
+.panelMeta {
+  font-size: 0.62rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.panelContent {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }

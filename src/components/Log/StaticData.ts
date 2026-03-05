@@ -1,130 +1,45 @@
-import { dataProps } from ".";
+import { AvionicsData } from "../../types/avionics";
 
-export const rocketLaunchData: dataProps[] = [
+// Static sample data for reference / testing (not used at runtime)
+export const rocketLaunchData: AvionicsData[] = [
   {
-    // Lançamento
-    maximumAltitude: 0,
-    altitude: 0,
-    maximumVelocity: 0,
-    velocity: 20,
-    maximumAcceleration: 0,
-    acceleration: 50,
-    velocityX: 5,
-    velocityY: 0,
-    velocityZ: 15,
-    accelerationX: 2,
-    accelerationY: 0,
-    accelerationZ: 48,
-    latitude: 34.0522,
-    longitude: -118.2437,
-    skibs: {
-      skib1: true,
-      skib2: false
-    }
+    altitude: 0, maximumAltitude: 0,
+    velocity: 20, maximumVelocity: 0,
+    acceleration: 50, maximumAcceleration: 0,
+    velocityX: 5, velocityY: 0, velocityZ: 15,
+    accelerationX: 2, accelerationY: 0, accelerationZ: 48,
+    latitude: -15.7942, longitude: -47.8822,
+    quaternion_w: 1, quaternion_x: 0, quaternion_y: 0, quaternion_z: 0,
+    skibs: { skib1: false, skib2: false },
   },
   {
-    // Subida inicial
-    maximumAltitude: 300,
-    altitude: 100,
-    maximumVelocity: 200,
-    velocity: 120,
-    maximumAcceleration: 300,
-    acceleration: 80,
-    velocityX: 20,
-    velocityY: 10,
-    velocityZ: 110,
-    accelerationX: 10,
-    accelerationY: 5,
-    accelerationZ: 75,
-    latitude: 34.0525,
-    longitude: -118.2439,
-    skibs: {
-      skib1: true,
-      skib2: false
-    }
+    altitude: 600, maximumAltitude: 600,
+    velocity: 200, maximumVelocity: 200,
+    acceleration: 30, maximumAcceleration: 120,
+    velocityX: 20, velocityY: 10, velocityZ: 190,
+    accelerationX: 2, accelerationY: 1, accelerationZ: 28,
+    latitude: -15.7940, longitude: -47.8820,
+    quaternion_w: 0.99, quaternion_x: 0.01, quaternion_y: 0.01, quaternion_z: 0.1,
+    skibs: { skib1: false, skib2: false },
   },
   {
-    // Aproximando-se do apogeu
-    maximumAltitude: 500,
-    altitude: 450,
-    maximumVelocity: 300,
-    velocity: 200,
-    maximumAcceleration: 400,
-    acceleration: 30,
-    velocityX: 40,
-    velocityY: 20,
-    velocityZ: 150,
-    accelerationX: 15,
-    accelerationY: 7,
-    accelerationZ: 20,
-    latitude: 34.0528,
-    longitude: -118.2441,
-    skibs: {
-      skib1: true,
-      skib2: false
-    }
+    altitude: 1500, maximumAltitude: 1500,
+    velocity: 0, maximumVelocity: 300,
+    acceleration: -9.8, maximumAcceleration: 120,
+    velocityX: 1, velocityY: 0.5, velocityZ: 0,
+    accelerationX: 0, accelerationY: 0, accelerationZ: -9.8,
+    latitude: -15.7938, longitude: -47.8818,
+    quaternion_w: 0.98, quaternion_x: 0.02, quaternion_y: 0.02, quaternion_z: 0.18,
+    skibs: { skib1: true, skib2: false },
   },
   {
-    // Apogeu
-    maximumAltitude: 600,
-    altitude: 600,
-    maximumVelocity: 400,
-    velocity: 0,
-    maximumAcceleration: 500,
-    acceleration: -30,
-    velocityX: 60,
-    velocityY: 30,
-    velocityZ: 0,
-    accelerationX: 0,
-    accelerationY: 0,
-    accelerationZ: -30,
-    latitude: 34.0530,
-    longitude: -118.2445,
-    skibs: {
-      skib1: true,
-      skib2: false
-    }
+    altitude: 0, maximumAltitude: 1500,
+    velocity: -4, maximumVelocity: 300,
+    acceleration: 0, maximumAcceleration: 120,
+    velocityX: 0, velocityY: 0, velocityZ: -4,
+    accelerationX: 0, accelerationY: 0, accelerationZ: 0,
+    latitude: -15.7935, longitude: -47.8815,
+    quaternion_w: 1, quaternion_x: 0, quaternion_y: 0, quaternion_z: 0,
+    skibs: { skib1: true, skib2: true },
   },
-  {
-    // Descida
-    maximumAltitude: 600,
-    altitude: 300,
-    maximumVelocity: 500,
-    velocity: 180,
-    maximumAcceleration: 500,
-    acceleration: -50,
-    velocityX: 40,
-    velocityY: 20,
-    velocityZ: -150,
-    accelerationX: -10,
-    accelerationY: -5,
-    accelerationZ: -55,
-    latitude: 34.0532,
-    longitude: -118.2448,
-    skibs: {
-      skib1: true,
-      skib2: true
-    }
-  },
-  {
-    // Aterrissagem
-    maximumAltitude: 600,
-    altitude: 0,
-    maximumVelocity: 500,
-    velocity: 0,
-    maximumAcceleration: 500,
-    acceleration: 0,
-    velocityX: 0,
-    velocityY: 0,
-    velocityZ: 0,
-    accelerationX: 0,
-    accelerationY: 0,
-    accelerationZ: 0,
-    latitude: 34.0535,
-    longitude: -118.2450,
-    skibs: {
-      skib1: false,
-      skib2: true
-    }
-  }
 ];

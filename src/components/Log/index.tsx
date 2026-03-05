@@ -1,45 +1,41 @@
-import { useEffect, useState } from "react";
-import styles from "./index.module.css";
+import { useState } from "react";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react";
-import { useWebSocket, dataProps } from "../../useWebSocket";
+import { AvionicsData } from "../../types/avionics";
+import styles from "./index.module.css";
 
-interface LogProps {
-  onDataChange: (data: dataProps) => void;
+interface DataLogProps {
+  data: AvionicsData;
+  isConnected: boolean;
 }
 
-function Log({ onDataChange }: LogProps) {
-  const { data, isConnected } = useWebSocket(false);
-  const [isOpen, setIsOpen] = useState(true);
-  const [historyData, setHistoryData] = useState<dataProps[]>([]);
-
-  useEffect(() => {
-    onDataChange(data);
-    setHistoryData(prevHistoryData => [...prevHistoryData, data]);
-    console.log(historyData);
-  }, [data]);
+function DataLog({ data, isConnected }: DataLogProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={styles.logMainContainer}>
-      <div className={styles.logContainer}>
-        {isOpen && (
-          <header className={styles.contentContainer}>
-            <h3>ESP32 WebSocket Data</h3>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </header>
-        )}
-      </div>
+    <div className={styles.wrapper}>
+      <button
+        className={styles.toggleBtn}
+        onClick={() => setIsOpen(!isOpen)}
+        title={isOpen ? "Hide log" : "Show raw data log"}
+      >
+        {isOpen ? <CaretRight size={14} weight="bold" /> : <CaretLeft size={14} weight="bold" />}
+      </button>
 
-      <a className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-        <div className={styles.modalOpenIcon}>
-          {isOpen ? (
-            <CaretRight size={32}></CaretRight>
-          ) : (
-            <CaretLeft size={32}></CaretLeft>
-          )}
+      {isOpen && (
+        <div className={styles.panel}>
+          <div className={styles.panelHeader}>
+            <span className={styles.panelTitle}>RAW TELEMETRY</span>
+            <span className={isConnected ? styles.live : styles.offline}>
+              {isConnected ? "● LIVE" : "○ OFFLINE"}
+            </span>
+          </div>
+          <pre className={styles.data}>{JSON.stringify(data, null, 2)}</pre>
         </div>
-      </a>
+      )}
     </div>
   );
 }
 
-export default Log;
+// Re-export AvionicsData so existing files that imported dataProps from here can still compile
+export type { AvionicsData as dataProps };
+export default DataLog;

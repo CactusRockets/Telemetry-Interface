@@ -1,0 +1,45 @@
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.625rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  border: 1px solid;
+  width: 100%;
+}
+
+.connected {
+  background: var(--green-dim);
+  border-color: var(--green-secondary);
+  color: var(--green-primary);
+}
+
+.disconnected {
+  background: var(--red-dim);
+  border-color: #4a2020;
+  color: var(--red);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.connected .dot {
+  background: var(--green-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.disconnected .dot {
+  background: var(--red);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--green-glow); }
+  50% { opacity: 0.4; box-shadow: none; }
+}
